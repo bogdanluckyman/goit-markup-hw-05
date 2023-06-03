@@ -94,6 +94,7 @@ img {
 }
 
 .header-list-item {
+  position: relative;
   display: block;
   font-weight: 500;
   font-size: 16px;
@@ -139,7 +140,7 @@ img {
   color: var(--hover-color);
 }
 
-.header-list.active::after {
+.header-list-item.active::after {
   content: "";
   position: absolute;
   left: 0;
