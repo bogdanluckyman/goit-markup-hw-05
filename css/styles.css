@@ -14,6 +14,7 @@ body {
   --color-header: #e7e9fc;
   --hover-color: #404bbf;
   --customers-color: #8e8f99;
+  --modal-background: #fcfcfc;
 }
 
 img {
@@ -89,6 +90,7 @@ img {
   display: flex;
   gap: 40px;
   margin-right: auto;
+  position: relative;
 }
 
 .header-list-item {
@@ -133,8 +135,19 @@ img {
   color: var(--hover-color);
 }
 
-.active::after {
-  text-decoration: underline;
+.active {
+  color: var(--hover-color);
+}
+
+.header-list.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  border-radius: 2px;
+  width: 100%;
+  height: 4px;
+  background-color: var(--hover-color);
 }
 
 /*------------- Hero ------------- */
@@ -513,6 +526,32 @@ img {
 .project-second-item {
   width: calc((100% - 48px) / 3);
 }
+
+.project-second-item:is(:hover, :focus) .portfolio-overlay {
+  transform: translateY(0);
+}
+
+.portfolio-overlay-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-overlay {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--footer-text);
+  background-color: var(--logo-color);
+  padding: 40px 32px;
+  height: 100%;
+  transform: translateY(100%);
+  transition-property: transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .second-list-title {
   font-weight: 500;
   font-size: 20px;
@@ -544,4 +583,44 @@ img {
 .portfolio-link:is(:hover, :focus) {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+  top: 0;
+}
+
+.is-hidden {
+  visibility: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 408px;
+  min-height: 584px;
+  background-color: var(--modal-background);
+  border-radius: 4px;
+  padding: 24px;
+}
+
+.modal-close {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.modal-close-icon {
+  width: 100%;
+  height: 100%;
 }
